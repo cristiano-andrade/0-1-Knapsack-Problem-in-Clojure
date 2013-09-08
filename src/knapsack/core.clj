@@ -1,5 +1,7 @@
 (ns knapsack.core
   (:require [clojure.java.io :as io])
+  (:require [clojure.string :as str])
+  (:require [clojure.pprint])
   (:gen-class))
 
 (defn get-lines
@@ -20,6 +22,16 @@
   (def digits (Integer. digits))
   digits)
 
+(defn find-dolls
+  "Returns a vector of dolls"
+  [lines]
+
+  (def dolls (filter #(re-find #"\w+\s+\d+\s+\d+" %) lines))
+  (def dolls (map (fn [string] (str/split string #"\s+")) dolls))
+  (def dolls (vec (map (fn [doll-vector] (zipmap [:name :weight :value] doll-vector)) dolls)))
+  (def dolls (map (fn [doll] {:name (get doll :name) :weight (Integer. (get doll :weight)) :value (Integer. (get doll :value))}) dolls))
+  dolls
+)
 
 
 (defn -main
@@ -28,6 +40,7 @@
 
   (def lines (get-lines filename))
   (def max-weight (find-max-weight (nth lines 0)))
+  (def dolls (find-dolls lines))
 
-  (println max-weight)
+  (clojure.pprint/pprint (type (get (nth dolls 0) :weight)))
 )

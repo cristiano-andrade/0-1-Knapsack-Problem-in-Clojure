@@ -13,3 +13,10 @@
     (is (= (knapsack.core/find-max-weight "max weight: 1") 1))
     (is (= (type (knapsack.core/find-max-weight "max weight: 1")) Integer))
   ))
+
+(deftest test-find-dolls
+  (testing "knapsack.core/find-dolls returns the dolls"
+    (is (= (knapsack.core/find-dolls ["doll 1 1"]) [{:name "doll" :weight 1 :value 1}]))
+    (is (= (knapsack.core/find-dolls ["abc abc abc" "doll 1 1"]) [{:name "doll" :weight 1 :value 1}]))
+    (is (= (knapsack.core/find-dolls ["doll 2 2" "doll 1 1"]) [{:name "doll" :weight 2 :value 2} {:name "doll" :weight 1 :value 1}]))
+  ))
