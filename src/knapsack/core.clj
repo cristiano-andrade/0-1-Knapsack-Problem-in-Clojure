@@ -1,4 +1,5 @@
 (ns knapsack.core
+  (:require clojure.java.io)
   (:gen-class))
 
 (defn -main
