@@ -12,6 +12,14 @@
       (def lines (conj lines line))))
   lines)
 
+(defn find-max-weight
+  "Given a string with digits, returns the digits as an integer"
+  [string]
+
+  (def digits (re-find #"\d+" string))
+  (def digits (Integer. digits))
+  digits)
+
 
 
 (defn -main
@@ -19,5 +27,7 @@
   [filename]
 
   (def lines (get-lines filename))
-  (println lines)
+  (def max-weight (find-max-weight (nth lines 0)))
+
+  (println max-weight)
 )
