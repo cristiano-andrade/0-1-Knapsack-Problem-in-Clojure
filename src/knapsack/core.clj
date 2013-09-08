@@ -1,10 +1,23 @@
 (ns knapsack.core
-  (:require clojure.java.io)
+  (:require [clojure.java.io :as io])
   (:gen-class))
 
+(defn get-lines
+  "Converts a file to a vector with each line as an element"
+  [filename]
+
+  (def lines [])
+  (with-open [rdr (io/reader filename)]
+    (doseq [line (line-seq rdr)]
+      (def lines (conj lines line))))
+  lines)
+
+
+
 (defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  ;; work around dangerous default behaviour in Clojure
-  (alter-var-root #'*read-eval* (constantly false))
-  (println "Hello, World!"))
+  "Given a properly formatted input file, selects dolls"
+  [filename]
+
+  (def lines (get-lines filename))
+  (println lines)
+)

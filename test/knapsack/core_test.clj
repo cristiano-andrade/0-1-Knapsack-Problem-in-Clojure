@@ -2,6 +2,8 @@
   (:require [clojure.test :refer :all]
             [knapsack.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest read-in-file
+  (testing "Reads lines from file into a vector"
+    (is (= (count (knapsack.core/get-lines "test.txt")) 9))
+    (is (= (type (knapsack.core/get-lines "test.txt")) clojure.lang.PersistentVector))
+  ))

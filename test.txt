@@ -1,0 +1,9 @@
+max weight: 5
+
+available dolls:
+
+name    weight value
+one       2     3
+two       3     4
+three     4     5
+four      5     6
