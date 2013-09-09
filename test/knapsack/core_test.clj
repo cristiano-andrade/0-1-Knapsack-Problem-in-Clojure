@@ -48,3 +48,14 @@
 
     (is (= (knapsack.core/find-indexes 5 7 test-crosstab test-dolls []) [0 1]))
   ))
+
+(deftest test-main
+  (testing "main function produces desired list of dolls"
+    (is (=(knapsack.core/-main "test.txt")
+          ["packed dolls:" "" "name\t\tweight\t\tvalue" "two\t\t3\t\t4" "one\t\t2\t\t3"]))
+    (is (=(knapsack.core/-main "input.txt")
+          ["packed dolls:" "" "name\t\tweight\t\tvalue" "sally\t\t4\t\t50" "eddie\t\t7\t\t20" "grumpy\t\t22\t\t80" "dusty\t\t43\t\t75" "grumpkin\t\t42\t\t70" "marc\t\t11\t\t70" "randal\t\t27\t\t60" "puppy\t\t15\t\t60" "dorothy\t\t50\t\t160" "candice\t\t153\t\t200" "anthony\t\t13\t\t35" "luke\t\t9\t\t150"]))
+    (is (=(knapsack.core/-main "test2.txt")
+          ["packed dolls:" "" "name\t\tweight\t\tvalue" "socks\t\t4\t\t50" "sunglasses\t\t7\t\t20" "note_case\t\t22\t\t80" "waterproof_overclothes\t\t43\t\t75" "waterproof_trousers\t\t42\t\t70" "suntan_cream\t\t11\t\t70" "banana\t\t27\t\t60" "glucose\t\t15\t\t60" "sandwich\t\t50\t\t160" "water\t\t153\t\t200" "compass\t\t13\t\t35" "map\t\t9\t\t150"]))
+  )
+)

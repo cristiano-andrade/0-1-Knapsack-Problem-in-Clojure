@@ -154,4 +154,5 @@
   (def selected-dolls (map (fn[x] (nth dolls x)) dolls-to-select-indexes))
   (def to-print (format-dolls selected-dolls))
   (display-to-screen to-print)
+  ; to-print
 )
