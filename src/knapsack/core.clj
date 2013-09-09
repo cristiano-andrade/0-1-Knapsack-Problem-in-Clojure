@@ -120,6 +120,24 @@
   dolls
 )
 
+(defn format-dolls
+  [dolls]
+
+  (def output (map (fn[x] [(get x :name) (get x :weight) (get x :value)]) (reverse dolls)))
+  (def output (map (fn[x] (str/join "\t\t" x)) output))
+  (def output (into ["name\t\tweight\t\tvalue"] output))
+  (def output (into [""] output))
+  (def output (into ["packed dolls:"] output))
+  output
+)
+
+(defn display-to-screen
+  [lines]
+  (dotimes [x (count lines)]
+    (println (nth lines x))
+  )
+)
+
 
 
 
@@ -130,12 +148,10 @@
   (def lines (get-lines filename))
   (def max-weight (find-max-weight (nth lines 0)))
   (def dolls (find-dolls lines))
-
   (def crosstab (create-crosstab dolls max-weight))
-
   (def max-total-value (last (last crosstab)))
-
   (def dolls-to-select-indexes (find-indexes max-weight max-total-value crosstab dolls []))
-
-  (clojure.pprint/pprint dolls-to-select-indexes)
+  (def selected-dolls (map (fn[x] (nth dolls x)) dolls-to-select-indexes))
+  (def to-print (format-dolls selected-dolls))
+  (display-to-screen to-print)
 )
