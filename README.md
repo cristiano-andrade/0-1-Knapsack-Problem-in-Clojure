@@ -3,11 +3,13 @@
 This is my solution to the [0-1 Knapsack Problem](https://github.com/micahalles/doll-smuggler).
 
 ## Installation
+Before installing, ensure that you have installed [Leiningen](https://github.com/technomancy/leiningen).
+
 To install this project from the command line, run
 ```
-- git clone https://github.com/toreyhickman/0-1-Knapsack-Problem-in-Clojure
-- cd knapsack
-- lein uberjar
+$ git clone https://github.com/toreyhickman/0-1-Knapsack-Problem-in-Clojure
+$ cd 0-1-Knapsack-Problem-in_clojure/
+$ lein uberjar
 ```
 
 ## Usage
@@ -20,7 +22,7 @@ $ java -jar target/knapsack-0.1.0-standalone.jar <yourfile.txt>
 ## Testing
 To run the test suite, from the command line run
 ```
-lein test
+$ lein test
 ```
 
 
