@@ -20,7 +20,12 @@ $ java -jar target/knapsack-0.1.0-standalone.jar <yourfile.txt>
 ```
 
 ## Testing
-To run the test suite, from the command line run
+This project is designed to display output to the console.  It uses the `println` function to do so.  This function returns `nil`.  I did not want to test that my program returns nil, so I added a command to line 157 of /src/knapsack/core.clj to return a vector containing the strings to be printed.  It is currently commented out to:
+```
+157    ; to-print
+```
+
+Before running the test suite, uncomment line 157.  Then, from the command line run
 ```
 $ lein test
 ```
