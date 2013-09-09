@@ -4,6 +4,29 @@
   (:require [clojure.pprint])
   (:gen-class))
 
+(defn find-indexes
+  [max-weight max-total-value crosstab dolls indexes]
+
+  ; return indexes if max-weight 0 or max-total-value 0
+  (if (or (= max-total-value 0)(= max-weight 0))
+    indexes
+
+    ; else ...
+    (do
+      (def index-of-doll(.indexOf (map (fn [x] (nth x max-weight)) crosstab) max-total-value))
+
+      ; return indexes if max-total-value not found
+      (if (= -1 index-of-doll)
+        indexes
+
+        (do
+          (def new-indexes (into [index-of-doll] indexes))
+          (def new-max-weight (- max-weight (get (nth dolls index-of-doll) :weight)))
+          (def new-max-total-value (- max-total-value (get (nth dolls index-of-doll) :value)))
+          (find-indexes new-max-weight new-max-total-value crosstab dolls new-indexes)
+        )))))
+
+
 (defn calculate-crosstab
   [dolls max-weight]
 
@@ -97,12 +120,6 @@
   dolls
 )
 
-(defn select-dolls
-  "Selects optimal dolls to put in the bag"
-  [dolls max-weight]
-
-
-)
 
 
 
@@ -116,5 +133,9 @@
 
   (def crosstab (create-crosstab dolls max-weight))
 
-  (clojure.pprint/pprint crosstab)
+  (def max-total-value (last (last crosstab)))
+
+  (def dolls-to-select-indexes (find-indexes max-weight max-total-value crosstab dolls []))
+
+  (clojure.pprint/pprint dolls-to-select-indexes)
 )

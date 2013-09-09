@@ -34,3 +34,17 @@
     (def test-dolls (conj test-dolls {:name "two" :weight 3 :value 4}))
     (is (= (knapsack.core/create-crosstab test-dolls 5) [[0 0 3 3 3 3][0 0 3 4 4 7]]))
   ))
+
+(deftest test-find-indexes
+  (testing "knapsack.core/find-indexes returns a vector containing indexes of dolls to select"
+    (def test-crosstab [[0 0 3 3 3 3][0 0 3 4 4 7][0 0 3 4 5 7][0 0 3 4 5 7]])
+    (def test-dolls [{:name "one" :weight 2 :value 3}{:name "two" :weight 3 :value 4}{:name "three" :weight 4 :value 5}{:name "four" :weight 5 :value 6}])
+
+    ; returns indexes if max-weight 0
+    (is (= (knapsack.core/find-indexes 0 7 test-crosstab test-dolls [2 3]) [2 3]))
+
+    ; returns indexes if max-total-value 0
+    (is (= (knapsack.core/find-indexes 5 0 test-crosstab test-dolls [2 3]) [2 3]))
+
+    (is (= (knapsack.core/find-indexes 5 7 test-crosstab test-dolls []) [0 1]))
+  ))
